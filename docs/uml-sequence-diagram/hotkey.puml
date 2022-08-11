@@ -1,0 +1,13 @@
+@startuml
+actor 사용자
+사용자 -> WorkHelper : 실행
+WorkHelper -> GlobalConfig : config = getConfig
+WorkHelper -> HotKeyMgr : add(key, msg)
+HotKeyMgr -> OS : hotkey 등록(config)
+사용자 -> OS : 등록된 hotkey 입력
+OS -> WorkHelper : hotkey hooker 실행
+WorkHelper -> HotKeyMgr : run(input key)
+
+hide footbox
+
+@enduml

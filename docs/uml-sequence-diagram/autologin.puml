@@ -1,0 +1,13 @@
+@startuml
+actor 사용자
+사용자 -> WorkHelper : 실행
+WorkHelper -> GlobalConfig : config = getConfig
+WorkHelper -> AutoLoginMgr : run(config.url, config.idquery, config.pwquery, config.btnquery, config.id, config.pw)
+AutoLoginMgr -> WebBrowserController : open(url)
+WebBrowserController -> WebBrowser : open(url)
+AutoLoginMgr -> WebBrowserController : input(idquery, id), input(pwquery, pw), click(btnquery)
+WebBrowserController -> WebBrowser : idquery, pwquery에 id, pw입력후, btnquery 클릭
+
+hide footbox
+
+@enduml

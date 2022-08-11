@@ -1,0 +1,44 @@
+@startuml
+
+class Main{
+
+}
+class GlobalConfig{
+    +getConfig
+}
+class AutoLoginMgr{
+    +run(url,idquery,pwquery,id,pw)
+}
+class HotKeyMgr{
+    +add(key, msg)
+    +run(key)
+}
+class WebBrowserController{
+    +open(url)
+    +input(cssSelector,text)
+}
+class Scheduler{
+    +add(ITask)
+}
+Interface ITask{
+    +run()
+}
+class PopupTask implements ITask{}
+
+
+Main->HotKeyMgr
+Main->GlobalConfig
+Main->AutoLoginMgr
+Main->Scheduler
+Main->ITask
+Main->PopupTask
+Main->QuickLinkMgr
+AutoLoginMgr->WebBrowserController
+QuickLinkMgr->WebBrowserController
+Scheduler o- ITask
+
+
+
+
+
+@enduml

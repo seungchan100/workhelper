@@ -1,0 +1,14 @@
+@startuml
+actor 사용자
+사용자 -> WorkHelper : 실행
+WorkHelper -> GlobalConfig : config = getConfig
+WorkHelper -> Scheduler : create(config)
+Scheduler -> PopupTask : task = create(config.schedule, msg)
+PopupTask -> PopupTask : nextExeTime = calculate()
+Scheduler -> Scheduler : register(task)
+Scheduler -> PopupTask : if(task.nextExeTime <= currentTime) run()
+PopupTask -> PopupTask : openPopup()
+
+hide footbox
+
+@enduml

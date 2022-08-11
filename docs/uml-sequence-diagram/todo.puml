@@ -1,0 +1,14 @@
+@startuml
+actor 사용자
+사용자 -> WorkHelper 
+WorkHelper -> TodoMgr : init(local저장소 connection string)
+TodoMgr -> local저장소 : list = readTodos()
+WorkHelper -> TodoMgr : list = TodoMgr.list
+WorkHelper -> WorkHelper : list 화면표시
+사용자 -> WorkHelper : todo 항목 삭제/입력/수정
+WorkHelper -> TodoMgr : delete(idx), insert(text), modify(idx, text)
+
+
+hide footbox
+
+@enduml

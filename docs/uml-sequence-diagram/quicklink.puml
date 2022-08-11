@@ -1,0 +1,14 @@
+@startuml
+actor 사용자
+사용자 -> WorkHelper : 실행
+WorkHelper -> GlobalConfig : config = getConfig
+WorkHelper -> QuickLinkMgr : add(config.name,config.url)
+WorkHelper -> QuickLinkMgr : list = quicklinks
+WorkHelper -> WorkHelper : list 화면표시
+사용자 -> WorkHelper : quicklink 버튼클릭
+WorkHelper -> WebBrowserController : open(url)
+WebBrowserController -> WebBrowser : open(url)
+
+hide footbox
+
+@enduml

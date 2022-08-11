@@ -1,0 +1,38 @@
+@startuml
+left to right direction
+actor 사용자
+rectangle WorkHelper{
+    usecase 자동로그인
+    usecase 퀵링크
+    usecase TODO
+    usecase 스케쥴러
+    usecase hotkey
+}
+rectangle 웹브라우저{
+
+}
+rectangle local저장소{
+
+}
+rectangle OS{
+
+}
+
+
+사용자 --> 자동로그인 : 프로그램실행
+자동로그인 --> 웹브라우저 : 외부사내포털접속및 로그인
+
+사용자 --> 퀵링크 : URL등록, 삭제, 수정, 이동하기
+퀵링크 --> 웹브라우저 : 지정된URL로 이동
+
+사용자 --> TODO : 등록, 수정, 삭제, 보기, check
+TODO --> local저장소 : 내용 업데이트
+
+사용자 --> 스케쥴러 : 등록, 수정, 삭제 
+스케쥴러 --> 사용자 : 알림띄우기
+
+사용자 --> hotkey : 등록, 수정, 삭제, 핫키누르기
+hotkey --> OS : 지정된 타이핑수행
+
+
+@enduml
